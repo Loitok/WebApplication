@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
@@ -8,7 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using WebApplication.BLL.Authentication;
 using WebApplication.BLL.ResultConstants;
 using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using WebApplication.BLL.ResultModel;
@@ -17,24 +15,24 @@ namespace WebApplication.BLL.Services
 {
     class AuthService : IAuthService
     {
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
-        private readonly RoleManager<IdentityRole> roleManager;
         public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration, 
             RoleManager<IdentityRole> roleManager)
         {
-            this.userManager = userManager;
-            this.roleManager = roleManager;
+            this._userManager = userManager;
+            this._roleManager = roleManager;
             _configuration = configuration;
         }
         public async Task<IResult> Login(LoginModel model)
         {
             try
             {
-                var user = await userManager.FindByNameAsync(model.Username);
-                if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
+                var user = await _userManager.FindByNameAsync(model.Username);
+                if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    var userRoles = await userManager.GetRolesAsync(user);
+                    var userRoles = await _userManager.GetRolesAsync(user);
 
                     var authClaims = new List<Claim>
                     {
@@ -77,7 +75,7 @@ namespace WebApplication.BLL.Services
         {
             try
             {
-                var userExists = await userManager.FindByNameAsync(model.Username);
+                var userExists = await _userManager.FindByNameAsync(model.Username);
                 if (userExists != null)
                     return Result.CreateFailed(AuthServiceResultConstants.UserAlreadyExists);
 
@@ -87,7 +85,7 @@ namespace WebApplication.BLL.Services
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = model.Username
                 };
-                var result = await userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (!result.Succeeded)
                     return Result.CreateFailed(CommonResultConstants.Failed);
 
@@ -103,7 +101,7 @@ namespace WebApplication.BLL.Services
         {
             try
             {
-                var userExists = await userManager.FindByNameAsync(model.Username);
+                var userExists = await _userManager.FindByNameAsync(model.Username);
                 if (userExists != null)
                     return Result.CreateFailed(AuthServiceResultConstants.UserAlreadyExists);
 
@@ -113,18 +111,18 @@ namespace WebApplication.BLL.Services
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = model.Username
                 };
-                var result = await userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (!result.Succeeded)
                     return Result.CreateFailed(CommonResultConstants.Failed);
 
-                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-                if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+                    await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+                    await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
 
-                if (await roleManager.RoleExistsAsync(UserRoles.Admin))
+                if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 {
-                    await userManager.AddToRoleAsync(user, UserRoles.Admin);
+                    await _userManager.AddToRoleAsync(user, UserRoles.Admin);
                 }
 
                 return Result.CreateSuccess();

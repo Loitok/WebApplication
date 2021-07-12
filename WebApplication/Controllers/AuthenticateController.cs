@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using WebApplication.BLL.Authentication;
 using WebApplication.BLL.Services;
 using WebApplication.BLL.ResultModel;
