@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ATemQ4GBim9Pl2/oJI0lIDp9iGE6Vt34XGabcYn/7k+ydI95D/g6iNlTs1I7Of9rLBMGCEsVjSfOlGA56fqZoA==",
+  "dgSpecHash": "k9XZYl0+rvNwCV4pVqvLdNqLj1I0UeoyqoGqSGbdh9zdy7hohuf/sbD8+lOORq0pJGBqHAe4Q8miMBq+1yM6+A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Денис\\source\\repos\\WebApplication.BLL\\WebApplication.BLL.csproj",
+  "projectFilePath": "C:\\Users\\Денис\\Source\\Repos\\WebApplication\\WebApplication.BLL\\WebApplication.BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Денис\\.nuget\\packages\\bodi\\1.5.0\\bodi.1.5.0.nupkg.sha512",
     "C:\\Users\\Денис\\.nuget\\packages\\cucumber.messages\\6.0.1\\cucumber.messages.6.0.1.nupkg.sha512",

@@ -4,5 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebApplication.BLL\WebApplication.BLL.csproj" />
+    <ProjectReference Include="..\WebApplication.DAL\WebApplication.DAL.csproj" />
+  </ItemGroup>
+
 
 </Project>
