@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using WebApplication.BLL.ResultModel;
 using WebApplication.DAL.AuthorsData;
 using WebApplication.DAL.Models;
 
@@ -17,13 +20,12 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAuthors()
-        {
-            return Ok(_authorsData.GetAuthors());
-        }
+        public IActionResult GetAuthors() =>
+            (Ok(_authorsData.GetAuthors()));
 
         [HttpGet("{id:int}")]
         public IActionResult GetAuthor(int id)
+
         {
             var author = _authorsData.GetAuthor(id);
 
@@ -60,17 +62,8 @@ namespace WebApplication.Controllers
         }
 
         [HttpPatch("{id:int}")]
-        public IActionResult EditAuthor(int id, Author author)
-        {
-            var existingAuthor = _authorsData.GetAuthor(id);
-            if (existingAuthor != null)
-            {
-                existingAuthor.Name = author.Name;
-                existingAuthor.BirthDate = author.BirthDate;
-                existingAuthor.Books = author.Books;
-                _authorsData.EditAuthor(author);
-            }
-            return Ok(author);
-        }
+        public IActionResult EditAuthor(int id, Author author) 
+        => (Ok(_authorsData.EditAuthor(id, author)));
+        
     }
 }

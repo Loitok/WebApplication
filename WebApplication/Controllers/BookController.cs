@@ -68,20 +68,8 @@ namespace WebApplication.Controllers
         }
 
         [HttpPatch("{id:int}")]
-        public IActionResult EditBook(int id, Book book)
-        {
-            var existingBook = _booksData.GetBook(id);
-            if (existingBook != null)
-            {
-                existingBook.Name = book.Name;
-                existingBook.Description = book.Description;
-                existingBook.IssueYear = book.IssueYear;
-                existingBook.PageNumber = book.PageNumber;
-                existingBook.Authors = book.Authors;
-                _booksData.EditBook(book);
-            }
-
-            return Ok(book);
-        }
+        public IActionResult EditBook(int id, Book book) 
+            => (Ok(_booksData.EditBook(id, book)));
+        
     }
 }

@@ -9,7 +9,7 @@ namespace WebApplication.DAL.BooksData
 {
     public class SqlBookData : IBooksData
     {
-        private ApplicationContext _applicationContext;
+        private readonly ApplicationContext _applicationContext;
         private List<Book> books;
 
         public SqlBookData(ApplicationContext applicationContext)
@@ -30,11 +30,17 @@ namespace WebApplication.DAL.BooksData
             _applicationContext.SaveChanges();
         }
 
-        public Book EditBook(Book book)
+        public Book EditBook(int id, Book book)
         {
-            var existingBook = _applicationContext.Books.Find(book.Id);
+            var existingBook = _applicationContext.Books.Find(id);
             if (existingBook != null)
             {
+                existingBook.Name = book.Name;
+                existingBook.Description = book.Description;
+                existingBook.IssueYear = book.IssueYear;
+                existingBook.PageNumber = book.PageNumber;
+                existingBook.Authors = book.Authors;
+
                 _applicationContext.Books.Update(book);
                 _applicationContext.SaveChanges();
             }

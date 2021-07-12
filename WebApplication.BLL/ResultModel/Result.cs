@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using SpecFlow.Internal.Json;
 
 namespace WebApplication.BLL.ResultModel
 {
@@ -24,8 +26,8 @@ namespace WebApplication.BLL.ResultModel
         public static Result CreateSuccess()
             => new Result(true);
 
-        public static Result CreateSuccess(object o)
-            => new Result(true);
+        public static Result CreateSuccess(object ob)
+            => new Result(true, ob.ToString().Split());
 
         public static Result CreateFailed(string message, Exception? exception = null)
             => new Result(false, new List<string> { message }, exception);

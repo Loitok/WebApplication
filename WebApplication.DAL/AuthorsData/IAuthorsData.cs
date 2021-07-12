@@ -9,6 +9,6 @@ namespace WebApplication.DAL.AuthorsData
         Author GetAuthor(int id);
         Author AddAuthor(Author author);
         void DeleteAuthor(Author author);
-        Author EditAuthor(Author author);
+        Author EditAuthor(int id, Author author);
     }
 }

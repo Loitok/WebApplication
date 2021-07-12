@@ -9,9 +9,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using WebApplication.DAL.AuthorsData;
 using WebApplication.DAL.BooksData;
+using WebApplication.DAL.AuthorsData;
 using WebApplication.BLL.Authentication;
+using WebApplication.BLL.Services;
 using WebApplication.DAL;
 
 namespace WebApplication
@@ -63,6 +64,7 @@ namespace WebApplication
 
             services.AddScoped<IBooksData, SqlBookData>();
             services.AddScoped<IAuthorsData, SqlAuthorData>();
+            services.AddScoped<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

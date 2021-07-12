@@ -1,0 +1,9 @@
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.BLL\bin\Debug\netcoreapp3.1\WebApplication.BLL.deps.json
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.BLL\bin\Debug\netcoreapp3.1\WebApplication.BLL.dll
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.BLL\bin\Debug\netcoreapp3.1\WebApplication.BLL.pdb
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.BLL\obj\Debug\netcoreapp3.1\WebApplication.BLL.csproj.AssemblyReference.cache
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.BLL\obj\Debug\netcoreapp3.1\WebApplication.BLL.AssemblyInfoInputs.cache
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.BLL\obj\Debug\netcoreapp3.1\WebApplication.BLL.AssemblyInfo.cs
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.BLL\obj\Debug\netcoreapp3.1\WebApplication.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.BLL\obj\Debug\netcoreapp3.1\WebApplication.BLL.dll
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.BLL\obj\Debug\netcoreapp3.1\WebApplication.BLL.pdb

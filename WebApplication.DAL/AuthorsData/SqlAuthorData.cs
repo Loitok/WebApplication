@@ -6,7 +6,7 @@ namespace WebApplication.DAL.AuthorsData
 {
     public class SqlAuthorData : IAuthorsData
     {
-        private ApplicationContext _applicationContext;
+        private readonly ApplicationContext _applicationContext;
 
         public SqlAuthorData(ApplicationContext applicationContext)
         {
@@ -26,16 +26,21 @@ namespace WebApplication.DAL.AuthorsData
             _applicationContext.SaveChanges();
         }
 
-        public Author EditAuthor(Author author)
+        public Author EditAuthor(int id, Author author)
         {
-            var existingAuthor = _applicationContext.Authors.Find(author.Id);
+            var existingAuthor = _applicationContext.Authors.Find(id);
+
             if (existingAuthor != null)
             {
-                _applicationContext.Authors.Update(author);
+                existingAuthor.Name = author.Name;
+                existingAuthor.BirthDate = author.BirthDate;
+                existingAuthor.Books = author.Books;
+
+                _applicationContext.Authors.Update(existingAuthor);
                 _applicationContext.SaveChanges();
             }
 
-            return author;
+            return AddAuthor(author);
         }
 
         public Author GetAuthor(int id)

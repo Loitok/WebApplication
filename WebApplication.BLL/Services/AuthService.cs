@@ -13,7 +13,7 @@ using WebApplication.BLL.ResultModel;
 
 namespace WebApplication.BLL.Services
 {
-    class AuthService : IAuthService
+    public class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;

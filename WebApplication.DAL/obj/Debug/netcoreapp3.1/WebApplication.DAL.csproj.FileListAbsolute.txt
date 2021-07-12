@@ -1,0 +1,12 @@
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\obj\Debug\netcoreapp3.1\WebApplication.DAL.csproj.AssemblyReference.cache
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\obj\Debug\netcoreapp3.1\WebApplication.DAL.AssemblyInfoInputs.cache
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\obj\Debug\netcoreapp3.1\WebApplication.DAL.AssemblyInfo.cs
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\obj\Debug\netcoreapp3.1\WebApplication.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\bin\Debug\netcoreapp3.1\WebApplication.DAL.deps.json
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\bin\Debug\netcoreapp3.1\WebApplication.DAL.dll
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\bin\Debug\netcoreapp3.1\WebApplication.DAL.pdb
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\bin\Debug\netcoreapp3.1\WebApplication.BLL.dll
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\bin\Debug\netcoreapp3.1\WebApplication.BLL.pdb
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\obj\Debug\netcoreapp3.1\WebApplication.DAL.csproj.CopyComplete
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\obj\Debug\netcoreapp3.1\WebApplication.DAL.dll
+C:\Users\Денис\Source\Repos\WebApplication\WebApplication.DAL\obj\Debug\netcoreapp3.1\WebApplication.DAL.pdb

@@ -11,6 +11,6 @@ namespace WebApplication.DAL.BooksData
         List<Book> GetBookByAuthor(string name);
         Book AddBook(Book book);
         void DeleteBook(Book book);
-        Book EditBook(Book book);
+        Book EditBook(int id, Book book);
     }
 }
