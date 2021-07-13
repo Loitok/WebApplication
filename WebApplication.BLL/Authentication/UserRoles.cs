@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WebApplication.BLL.Authentication
+﻿namespace WebApplication.BLL.Authentication
 {
     public static class UserRoles
     {

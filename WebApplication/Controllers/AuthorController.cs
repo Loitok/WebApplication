@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using WebApplication.BLL.ResultModel;
 using WebApplication.DAL.AuthorsData;
 using WebApplication.DAL.Models;
 
@@ -25,7 +22,6 @@ namespace WebApplication.Controllers
 
         [HttpGet("{id:int}")]
         public IActionResult GetAuthor(int id)
-
         {
             var author = _authorsData.GetAuthor(id);
 

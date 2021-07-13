@@ -7,10 +7,7 @@ namespace WebApplication.DAL
 {
     public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
-        {
-
-        }
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
