@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using WebApplication.DAL.AuthorsData;
 using WebApplication.DAL.Models;
+using WebApplication.Extensions;
 
 namespace WebApplication.Controllers
 {
@@ -17,49 +20,32 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAuthors() =>
-            (Ok(_authorsData.GetAuthors()));
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAuthors() =>
+            (await _authorsData.GetAuthors()).ToActionResult();
+
 
         [HttpGet("{id:int}")]
-        public IActionResult GetAuthor(int id)
-        {
-            var author = _authorsData.GetAuthor(id);
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAuthor(int id) =>
+            (await _authorsData.GetAuthor(id)).ToActionResult();
 
-            if (author != null)
-            {
-                return Ok(author);
-            }
-
-            return NotFound($"Author not found! Id : {id}");
-        }
 
         [HttpPost]
-        public IActionResult AddAuthor(Author author)
-        {
-            _authorsData.AddAuthor(author);
-            return Created(
-                HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" +
-                author.Id,
-                author);
-        }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> AddAuthor([FromBody] Author author) =>
+            (await _authorsData.AddAuthor(author)).ToActionResult();
+
 
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteAuthor(int id)
-        {
-            var author = _authorsData.GetAuthor(id);
-
-            if (author != null)
-            {
-                _authorsData.DeleteAuthor(author);
-                return Ok();
-            }
-
-            return NotFound("Author was not found");
-        }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> DeleteAuthor(int id) =>
+            (await _authorsData.DeleteAuthor(id)).ToActionResult();
+        
 
         [HttpPatch("{id:int}")]
-        public IActionResult EditAuthor(int id, Author author) 
-        => (Ok(_authorsData.EditAuthor(id, author)));
-        
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> EditAuthor([FromBody] int id, Author author) 
+        => (await _authorsData.EditAuthor(id, author)).ToActionResult();
     }
 }

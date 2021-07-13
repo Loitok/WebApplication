@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using WebApplication.BLL.ResultModel;
+using WebApplication.BLL.ResultModel.Generic;
 
 namespace WebApplication.BLL.Services
 {
@@ -55,10 +56,10 @@ namespace WebApplication.BLL.Services
                         signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
 
-                    return Result.CreateSuccess(new
+                    return Result<TokenResult>.CreateSuccess(new TokenResult()
                     {
-                        token = new JwtSecurityTokenHandler().WriteToken(token),
-                        expiration = token.ValidTo
+                        Token = new JwtSecurityTokenHandler().WriteToken(token),
+                        Expiration = token.ValidTo
                     });
                 }
 

@@ -26,10 +26,10 @@ namespace WebApplication.BLL.ResultModel
         public static Result CreateSuccess()
             => new Result(true);
 
-        public static Result CreateSuccess(object ob)
-            => new Result(true, ob.ToString().Split());
-
         public static Result CreateFailed(string message, Exception? exception = null)
+            => new Result(false, new List<string> { message }, exception);
+
+        public static Result DeleteFailed(string message, Exception? exception = null)
             => new Result(false, new List<string> { message }, exception);
 
         public static Result CreateFailed(IEnumerable<string> messages, Exception? exception = null)

@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.DAL.BooksData;
 using WebApplication.DAL.Models;
+using WebApplication.Extensions;
 
 namespace WebApplication.Controllers
 {
@@ -18,58 +21,44 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBooksByName([FromQuery] string? name)
-        {
-            var book = name is null ? _booksData.GetBooks() : _booksData.GetBookByName(name);
-            
-            if (book != null)
-            {
-                return Ok(book);
-            }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetBooks() =>
+            (await _booksData.GetBooks()).ToActionResult();
 
-            return NotFound($"Book not found! Name : {name}");
-        }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetBook(int id)
-        {
-            var book = _booksData.GetBook(id);
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetBook(int id) =>
+            (await _booksData.GetBook(id)).ToActionResult();
 
-            if (book != null)
-            {
-                return Ok(book);
-            }
 
-            return NotFound($"Book not found! Id : {id}");
-        }
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetBookByName([FromQuery] string? name) =>
+            (await _booksData.GetBookByName(name)).ToActionResult();
+
+
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetBookByAuthor([FromQuery] string? name) =>
+            (await _booksData.GetBookByAuthor(name)).ToActionResult();
+
 
         [HttpPost]
-        public IActionResult AddBook(Book book)
-        {
-            _booksData.AddBook(book);
-            return Created(
-                HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" +
-                book.Id,
-                book);
-        }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> AddBook([FromBody] Book book) =>
+            (await _booksData.AddBook(book)).ToActionResult();
+
 
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteBook(int id)
-        {
-            var book = _booksData.GetBook(id);
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> DeleteBook(int id) =>
+            (await _booksData.DeleteBook(id)).ToActionResult();
 
-            if (book != null)
-            {
-                _booksData.DeleteBook(book);
-                return Ok();
-            }
-
-            return NotFound("Book was not found");
-        }
 
         [HttpPatch("{id:int}")]
-        public IActionResult EditBook(int id, Book book) 
-            => (Ok(_booksData.EditBook(id, book)));
-        
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> EditBook([FromBody] int id, Book book)
+            => (await _booksData.EditBook(id, book)).ToActionResult();
     }
 }

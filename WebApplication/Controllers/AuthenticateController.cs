@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WebApplication.BLL.Authentication;
 using WebApplication.BLL.Services;
-using WebApplication.BLL.ResultModel;
+using WebApplication.Extensions;
 
 namespace WebApplication.Controllers
 {
@@ -21,19 +21,19 @@ namespace WebApplication.Controllers
 
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IResult> Login([FromBody] LoginModel model) =>
-            (await _authService.Login(model));
+        public async Task<IActionResult> Login([FromBody] LoginModel model) =>
+            (await _authService.Login(model)).ToActionResult();
 
 
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IResult> Register([FromBody] RegisterModel model) =>
-            (await _authService.Register(model));
+        public async Task<IActionResult> Register([FromBody] RegisterModel model) =>
+            (await _authService.Register(model)).ToActionResult();
 
 
         [HttpPost("register-admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IResult> RegisterAdmin([FromBody] RegisterModel model) =>
-            (await _authService.RegisterAdmin(model));
+        public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model) =>
+            (await _authService.RegisterAdmin(model)).ToActionResult();
     }
 }
